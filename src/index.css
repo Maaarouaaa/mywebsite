@@ -899,8 +899,8 @@ button {
     padding: 0.8rem;
   }
 
-  .gallery-frame img {
-    border-width: 6px;
+  .gallery-frame__mat {
+    padding: 8px;
   }
 
   .case-media--split {
