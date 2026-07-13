@@ -1,3 +1,4 @@
+import { asset } from "../lib/asset";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { projects } from "../data/content";
@@ -26,7 +27,7 @@ export default function Projects() {
       <section className="gallery-room fade-up" aria-label="Featured project gallery">
         <img
           className="gallery-decor gallery-decor--wall"
-          src="/images/5lYnVl38nbtNR3xqyPBMLeeg8dk.png"
+          src={asset("images/5lYnVl38nbtNR3xqyPBMLeeg8dk.png")}
           alt=""
           aria-hidden="true"
         />
@@ -36,7 +37,7 @@ export default function Projects() {
               <div className="gallery-frame__mat">
                 <img
                   className="gallery-frame__art"
-                  src={project.galleryImage || project.images?.[0]}
+                  src={asset(project.galleryImage || project.images?.[0])}
                   alt=""
                 />
               </div>
@@ -69,7 +70,7 @@ export default function Projects() {
           {project.images?.length ? (
             <div className={`case-media ${project.images.length > 1 ? "case-media--split" : ""}`}>
               {project.images.slice(0, 4).map((src) => (
-                <img key={src} src={src} alt="" />
+                <img key={src} src={asset(src)} alt="" />
               ))}
             </div>
           ) : null}

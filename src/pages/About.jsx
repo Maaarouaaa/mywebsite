@@ -1,10 +1,12 @@
+import { asset } from "../lib/asset";
+
 export default function About() {
   return (
     <main className="page about-page">
       <h1 className="about-title fade-up">ABOUT</h1>
       <img
         className="about-hero fade-up"
-        src="/images/y7ksKAVtaNfwVDaVj5QwLKiyvI.jpg"
+        src={asset("images/y7ksKAVtaNfwVDaVj5QwLKiyvI.jpg")}
         alt="Maroua speaking on a panel at Stanford FSI"
       />
 
@@ -105,7 +107,7 @@ export default function About() {
 
         <div className="about-strip">
           <img
-            src="/images/qXQUytC8Ww6sk2yh5h4Pg0SqHZY.png"
+            src={asset("images/qXQUytC8Ww6sk2yh5h4Pg0SqHZY.png")}
             alt="Personal collage of places, culture, and references"
           />
         </div>

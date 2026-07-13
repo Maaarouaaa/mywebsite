@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { asset } from "../lib/asset";
 import { SocialDock } from "../components/SiteChrome";
 import { homeEssay, projects } from "../data/content";
 
@@ -32,7 +33,7 @@ export default function Home() {
                 className={`project-tile ${index === 2 ? "project-tile--wide" : ""} fade-up`}
                 style={{ animationDelay: `${0.1 * index}s` }}
               >
-                <img src={project.homeImage} alt="" />
+                <img src={asset(project.homeImage)} alt="" />
                 <span>{project.short}</span>
               </Link>
             ))}

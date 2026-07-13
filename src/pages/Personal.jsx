@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { asset } from "../lib/asset";
 
 export default function Personal() {
   return (
     <main className="page personal-page">
       <div className="personal-top">
         <Link to="/" className="personal-home" aria-label="Home">
-          <img src="/images/d88am3v35AD5fuoz28L9E70oo4.png" alt="" />
+          <img src={asset("images/d88am3v35AD5fuoz28L9E70oo4.png")} alt="" />
         </Link>
         <p className="personal-note">(still under construction)</p>
       </div>
@@ -17,12 +18,12 @@ export default function Personal() {
           <div className="barbie-window">
             <img
               className="barbie-portrait"
-              src="/images/8uVYgauXOFMZwb0jmceOcLj0.png"
+              src={asset("images/8uVYgauXOFMZwb0jmceOcLj0.png")}
               alt="Portrait of Maroua"
             />
             <img
               className="barbie-frame"
-              src="/images/wXMW9iQUDMWotJ7QWrsIoeEuV6E.png"
+              src={asset("images/wXMW9iQUDMWotJ7QWrsIoeEuV6E.png")}
               alt=""
               aria-hidden="true"
             />

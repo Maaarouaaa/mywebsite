@@ -276,9 +276,10 @@ button {
 .home-hero__bg {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    url("/images/oMLPWhAXnb3SOMAeNCwqhvzYZ8M.png") center top / cover no-repeat;
+  background-color: #efabbf;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
   transform: scale(1.02);
   animation: softFloat 10s ease-in-out infinite;
 }
@@ -323,7 +324,9 @@ button {
 .home-projects__bg {
   position: absolute;
   inset: 0;
-  background: url("/images/PVWlMPZtnOVol7HIQcj1CparVg.png") center / cover no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   filter: saturate(1.05) brightness(1.05);
 }
 
@@ -400,7 +403,9 @@ button {
 .home-door__scene {
   position: absolute;
   inset: 0;
-  background: url("/images/F0demdaqV8J76Vl8rLM7njXiG7A.png") center / cover no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   transform: rotate(90deg) scale(1.35);
   transform-origin: center;
 }
@@ -454,9 +459,10 @@ button {
 }
 
 .home-essay__visual {
-  background:
-    linear-gradient(180deg, rgba(232, 168, 187, 0.2), rgba(232, 168, 187, 0.55)),
-    url("/images/PVWlMPZtnOVol7HIQcj1CparVg.png") center / cover no-repeat;
+  background-color: #e8a8bb;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-right: 1px solid #111;
   min-height: 70vh;
 }
@@ -578,7 +584,9 @@ button {
   width: min(1200px, calc(100% - 1.5rem));
   margin: 0 auto 4rem;
   aspect-ratio: 16 / 9;
-  background: url("/images/De0X4dSxNr48OgpkXnFT8J4cLI.png") center / cover no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -736,9 +744,10 @@ button {
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(135, 206, 235, 0.35), rgba(255, 255, 255, 0.2) 55%, #fff),
-    url("/images/xJhFfmGTs9BNZPwogIOmOiqnSA.png") center / cover no-repeat;
+  background-color: #87ceeb;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .personal-inner {
