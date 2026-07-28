@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { asset } from "../lib/asset";
-import { SocialDock } from "../components/SiteChrome";
 import { homeEssay, projects } from "../data/content";
 
 const featured = {
@@ -58,13 +57,11 @@ export default function Home() {
             </div>
           </Link>
         ) : null}
-
-        <SocialDock />
       </section>
 
-      <section className="home-finale">
+      <section className="additional-projects">
         <div
-          className="home-finale__bg"
+          className="additional-projects__bg"
           style={{ backgroundImage: `url(${asset("images/F0demdaqV8J76Vl8rLM7njXiG7A.png")})` }}
           aria-hidden="true"
         />

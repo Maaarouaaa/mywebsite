@@ -53,6 +53,20 @@ export default function SiteChrome() {
         </label>
       </div>
 
+      <div className="social-dock" aria-label="Social links">
+        <a href="https://github.com/Maaarouaaa" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <img src={asset("images/bfLVO2MvSz6g5zZ2Ycl5ybYog.png")} alt="" />
+        </a>
+        <a
+          href="https://linkedin.com/in/maroua-bezzaoui"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn"
+        >
+          <img src={asset("images/6wpEoTmMdgMMiXA4tbHr5Md5TU.png")} alt="" />
+        </a>
+      </div>
+
       <div className={`nav-drawer ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
         <nav className="nav-panel" onClick={(e) => e.stopPropagation()} aria-label="Primary">
           {links.map((link) => (
@@ -68,23 +82,5 @@ export default function SiteChrome() {
         </nav>
       </div>
     </>
-  );
-}
-
-export function SocialDock() {
-  return (
-    <div className="social-dock" aria-label="Social links">
-      <a href="https://github.com/Maaarouaaa" target="_blank" rel="noreferrer" aria-label="GitHub">
-        <img src={asset("images/bfLVO2MvSz6g5zZ2Ycl5ybYog.png")} alt="" />
-      </a>
-      <a
-        href="https://linkedin.com/in/maroua-bezzaoui"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="LinkedIn"
-      >
-        <img src={asset("images/6wpEoTmMdgMMiXA4tbHr5Md5TU.png")} alt="" />
-      </a>
-    </div>
   );
 }
