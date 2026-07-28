@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { asset } from "../lib/asset";
 import { SocialDock } from "../components/SiteChrome";
@@ -11,51 +10,16 @@ const featured = {
 };
 
 export default function Home() {
-  const projectsRef = useRef(null);
-
-  useEffect(() => {
-    const section = projectsRef.current;
-    if (!section) return undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const hide = entry.isIntersecting && entry.intersectionRatio >= 0.4;
-        document.body.classList.toggle("hide-home-chrome", hide);
-      },
-      { threshold: [0.25, 0.4, 0.6, 0.8] },
-    );
-
-    observer.observe(section);
-    return () => {
-      observer.disconnect();
-      document.body.classList.remove("hide-home-chrome");
-    };
-  }, []);
-
   return (
     <main className="page home-page">
-      <section className="home-hero">
-        <div
-          className="home-hero__bg"
-          style={{ backgroundImage: `url(${asset("images/oMLPWhAXnb3SOMAeNCwqhvzYZ8M.png")})` }}
-          aria-hidden="true"
-        />
-        <header className="home-brand fade-up">
-          <h1 className="home-brand__name">Maroua BZ</h1>
-          <p className="home-brand__tag">Computer Science & Product Design</p>
-        </header>
-        <SocialDock />
-      </section>
-
       <section
-        ref={projectsRef}
-        className="home-projects"
+        className="projects-hero"
         id="selected"
-        aria-label="Selected projects"
-        style={{ backgroundImage: `url(${asset("images/PVWlMPZtnOVol7HIQcj1CparVg.png")})` }}
+        aria-label="Featured projects"
+        style={{ backgroundImage: `url(${asset("images/oMLPWhAXnb3SOMAeNCwqhvzYZ8M.png")})` }}
       >
-        <div className="home-projects__band home-projects__band--top" aria-hidden="true" />
-        <div className="home-projects__band home-projects__band--unicode" aria-hidden="true" />
+        <div className="projects-hero__veil projects-hero__veil--top" aria-hidden="true" />
+        <div className="projects-hero__veil projects-hero__veil--unicode" aria-hidden="true" />
 
         {featured.levelup ? (
           <Link
@@ -94,6 +58,8 @@ export default function Home() {
             </div>
           </Link>
         ) : null}
+
+        <SocialDock />
       </section>
 
       <section className="home-finale">
