@@ -264,213 +264,314 @@ button {
   }
 }
 
-/* HOME — continuous Framer canvas (design frame 1440 × 2943) */
-.home-canvas {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1440 / 2943;
-  background: #efabbf;
-  overflow: clip;
-  container-type: inline-size;
-  container-name: home;
-}
-
-.home-canvas__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+body.hide-home-chrome .site-chrome,
+body.hide-home-chrome .social-dock {
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  user-select: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
-.home-canvas__content {
+.site-chrome,
+.social-dock {
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+/* HOME */
+.home-page {
+  background: #efabbf;
+}
+
+.home-hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.home-hero__bg {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  background-color: #efabbf;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .home-brand {
-  position: absolute;
-  top: 11.96%;
-  left: 12%;
-  width: 80%;
+  position: relative;
+  z-index: 1;
+  width: min(80%, 1153px);
   text-align: center;
+  padding: 2rem 1rem;
 }
 
 .home-brand__name {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 4.167cqw;
+  font-size: clamp(2rem, 4.2vw, 60px);
   line-height: 1.2;
-  letter-spacing: 6.125cqw;
-  text-indent: 6.125cqw;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
   text-transform: uppercase;
   color: #000;
-  white-space: nowrap;
 }
 
 .home-brand__tag {
-  margin: 10.07cqw 0 0;
+  margin: 1.4rem 0 0;
   font-family: var(--font-sans);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.667cqw;
+  font-size: clamp(1rem, 1.7vw, 24px);
   line-height: 1.2;
-  letter-spacing: 0.833cqw;
+  letter-spacing: 0.12em;
   color: #000;
 }
 
-.home-selected {
+/* Projects — editorial desktop composition */
+.home-projects {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #efabbf;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+.home-projects__band {
   position: absolute;
-  top: 34%;
   left: 0;
   width: 100%;
-  height: 33.3%;
+  border: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
-.home-selected__title {
-  position: absolute;
-  top: 0.65%;
-  left: 29.7%;
-  margin: 0;
-  width: 59.9%;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 3.96cqw;
-  line-height: 1.2;
-  letter-spacing: 0.792cqw;
-  text-transform: none;
-  color: #000;
-  text-align: left;
+.home-projects__band--top {
+  top: 36px;
+  height: 310px;
 }
 
-.home-selected__grid {
-  position: absolute;
-  inset: 0;
+.home-projects__band--unicode {
+  top: 620px;
+  height: 420px;
 }
 
-.home-card {
-  position: absolute;
+.home-project {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding-left: 1.25cqw;
-  box-sizing: border-box;
   transition: transform 0.35s var(--ease);
 }
 
-.home-card:hover {
-  transform: translateY(-0.4cqw);
+.home-project:hover {
+  transform: translateY(-4px);
 }
 
-.home-card__image {
-  width: 29.93cqw;
-  height: 18.06cqw;
+.home-project__card {
+  background: #fff5f8;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(80, 30, 50, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.home-project__card img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 1.74cqw;
-  box-shadow: 0 0.28cqw 0.28cqw rgba(0, 0, 0, 0.3);
-}
-
-.home-card__label {
   display: block;
-  width: 29.93cqw;
-  margin-top: 0.7cqw;
+}
+
+.home-project__title {
+  display: block;
+  margin-top: 24px;
   font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 2.78cqw;
-  line-height: 1.2;
-  letter-spacing: 0.556cqw;
-  text-indent: 0.556cqw;
-  text-transform: uppercase;
+  font-size: clamp(44px, 3vw, 58px);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  line-height: 1;
   color: #000;
-  text-align: center;
+  text-transform: uppercase;
 }
 
-.home-card--levelup {
-  top: 11.8%;
-  left: 1.67%;
-  width: 32.5%;
-}
-
-.home-card--speech {
-  top: 11.8%;
-  left: 65.7%;
-  width: 34.65%;
-}
-
-.home-card--unicode {
-  top: 58%;
-  left: 35.75%;
-  width: 32.5%;
-}
-
-.home-card--unicode .home-card__label {
+.home-project--unicode .home-project__title {
   margin-top: 0;
-  margin-bottom: 0.45cqw;
+  margin-bottom: 22px;
   text-align: center;
+  width: 100%;
 }
 
-.home-card--unicode .home-card__image {
-  margin-top: 0;
+@media (min-width: 1001px) {
+  .home-projects {
+    height: 100vh;
+    min-height: 900px;
+    background-attachment: fixed;
+  }
+
+  .home-project {
+    position: absolute;
+  }
+
+  .home-project--levelup {
+    top: 74px;
+    left: 42px;
+    width: clamp(500px, 32vw, 580px);
+  }
+
+  .home-project--levelup .home-project__card {
+    width: 100%;
+    aspect-ratio: 1.65 / 1;
+  }
+
+  .home-project--levelup .home-project__title {
+    padding-left: 128px;
+    margin-left: 0;
+    text-align: left;
+    text-indent: 0;
+  }
+
+  .home-project--speech {
+    top: 58px;
+    left: 68vw;
+    width: clamp(560px, 35vw, 660px);
+  }
+
+  .home-project--speech .home-project__card {
+    width: 100%;
+    aspect-ratio: 1.65 / 1;
+  }
+
+  .home-project--speech .home-project__title {
+    text-align: center;
+    text-indent: 0.16em;
+    width: min(100%, calc(32vw - 24px));
+  }
+
+  .home-project--unicode {
+    top: 675px;
+    left: 50%;
+    width: clamp(500px, 31vw, 570px);
+    margin-left: calc(clamp(500px, 31vw, 570px) / -2);
+    align-items: center;
+  }
+
+  .home-project--unicode:hover {
+    transform: translateY(-4px);
+  }
+
+  .home-project--unicode .home-project__card {
+    width: 100%;
+    aspect-ratio: 1.65 / 1;
+  }
+}
+
+@media (max-width: 1000px) {
+  .home-projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.75rem;
+    padding: 4.5rem 1.25rem 5rem;
+    min-height: auto;
+  }
+
+  .home-projects__band {
+    display: none;
+  }
+
+  .home-project {
+    width: min(100%, 520px);
+    align-items: center;
+  }
+
+  .home-project__card {
+    width: 100%;
+    aspect-ratio: 1.65 / 1;
+  }
+
+  .home-project__title {
+    margin-top: 1rem;
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    text-align: center;
+    text-indent: 0.16em;
+  }
+
+  .home-project--unicode {
+    flex-direction: column;
+  }
+
+  .home-project--unicode .home-project__title {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Door + essay finale */
+.home-finale {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #f7d6e2;
+}
+
+.home-finale__bg {
+  position: absolute;
+  inset: -10%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: rotate(90deg) scale(1.25);
+  transform-origin: center;
 }
 
 .home-essay-rail {
   position: absolute;
-  top: 2.8%;
-  right: 0.4%;
-  width: 13.8%;
-  height: 96%;
+  top: 8%;
+  right: 1.2%;
+  width: min(200px, 14vw);
+  bottom: 8%;
   z-index: 2;
-  pointer-events: none;
-}
-
-.home-essay-rail > * {
-  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .home-essay-rail__more {
-  position: absolute;
-  top: 64.1%;
-  left: -7%;
   font-family: var(--font-body-soft);
-  font-size: 2.08cqw;
+  font-size: clamp(1.1rem, 2vw, 1.7rem);
   font-weight: 400;
   color: #000;
   line-height: 1.2;
   white-space: nowrap;
-  z-index: 3;
 }
 
 .home-essay-rail__barcode {
-  position: absolute;
-  top: 65.65%;
-  left: -50%;
-  width: 21.9cqw;
+  width: min(315px, 22vw);
   max-width: none;
   height: auto;
-  z-index: 2;
+  margin-left: -35%;
 }
 
 .home-essay-rail__copy {
-  position: absolute;
-  top: 69.2%;
-  left: 0;
-  right: 0;
-  bottom: 1%;
+  flex: 1;
   overflow: hidden;
   font-family: var(--font-sans);
-  font-size: 0.9cqw;
-  line-height: 1.2;
+  font-size: clamp(0.65rem, 0.85vw, 0.8rem);
+  line-height: 1.25;
   color: #000;
   text-align: left;
 }
 
 .home-essay-rail__copy p {
-  margin: 0 0 0.9cqw;
+  margin: 0 0 0.75rem;
 }
 
 .home-essay-rail__and-more {
@@ -479,24 +580,26 @@ button {
 
 .home-door-cta {
   position: absolute;
-  top: 76.45%;
-  left: 26.1%;
-  width: 39%;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 2.78cqw;
+  font-size: clamp(1.6rem, 2.8vw, 2.5rem);
   line-height: 1.2;
-  letter-spacing: 0.556cqw;
-  text-indent: 0.556cqw;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
   color: #fff;
   text-align: center;
-  text-shadow: 0 0.4cqw 1.4cqw rgba(0, 0, 0, 0.35);
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
   transition: opacity 0.25s ease, transform 0.35s var(--ease);
+  white-space: nowrap;
 }
 
 .home-door-cta:hover {
   opacity: 0.92;
-  transform: translateY(-0.2cqw);
+  transform: translate(-50%, calc(-50% - 4px));
 }
 
 /* ABOUT */
@@ -895,85 +998,39 @@ button {
 }
 
 @media (max-width: 860px) {
-  .home-canvas {
-    max-width: none;
-    width: 100%;
-    min-height: 220vw;
-    aspect-ratio: 1440 / 3200;
-  }
-
   .home-brand__name {
-    letter-spacing: 4.2cqw;
-    text-indent: 4.2cqw;
-    font-size: 5.4cqw;
-    white-space: normal;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    font-size: clamp(1.6rem, 8vw, 2.4rem);
   }
 
   .home-brand__tag {
-    font-size: 2.4cqw;
-    letter-spacing: 0.5cqw;
-  }
-
-  .home-selected__title {
-    left: 8%;
-    width: 84%;
-    text-align: center;
-    font-size: 5cqw;
-  }
-
-  .home-card--levelup,
-  .home-card--speech,
-  .home-card--unicode {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 78%;
-    margin: 0 auto 4cqw;
-  }
-
-  .home-selected__grid {
-    position: absolute;
-    top: 14%;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .home-card__image {
-    width: 70cqw;
-    height: auto;
-    aspect-ratio: 431 / 260;
-  }
-
-  .home-card__label {
-    font-size: 4.2cqw;
+    font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+    letter-spacing: 0.08em;
   }
 
   .home-essay-rail {
-    width: 28%;
-    right: 1%;
-  }
-
-  .home-essay-rail__copy {
-    font-size: 1.8cqw;
-  }
-
-  .home-essay-rail__more {
-    font-size: 3.2cqw;
-    left: -40%;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(100%, 280px);
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+    bottom: auto;
   }
 
   .home-essay-rail__barcode {
-    width: 34cqw;
-    left: -80%;
+    width: 100%;
+    margin-left: 0;
   }
 
   .home-door-cta {
-    font-size: 4.2cqw;
-    width: 70%;
-    left: 15%;
+    top: 42%;
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .home-finale {
+    min-height: 120vh;
   }
 
   .gallery-frames {

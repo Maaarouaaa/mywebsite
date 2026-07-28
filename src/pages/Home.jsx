@@ -1,54 +1,107 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { asset } from "../lib/asset";
 import { SocialDock } from "../components/SiteChrome";
 import { homeEssay, projects } from "../data/content";
 
-const featured = [
-  { project: projects.find((p) => p.id === "levelup"), label: "LEVELUP", place: "levelup" },
-  { project: projects.find((p) => p.id === "speech-ai"), label: "SPEECH-AI", place: "speech" },
-  { project: projects.find((p) => p.id === "unicode"), label: "UNICODE", place: "unicode" },
-].filter((item) => item.project);
+const featured = {
+  levelup: projects.find((p) => p.id === "levelup"),
+  speech: projects.find((p) => p.id === "speech-ai"),
+  unicode: projects.find((p) => p.id === "unicode"),
+};
 
 export default function Home() {
-  return (
-    <main className="home-canvas page">
-      <img
-        className="home-canvas__bg"
-        src={asset("images/oMLPWhAXnb3SOMAeNCwqhvzYZ8M.png")}
-        alt=""
-        decoding="async"
-      />
+  const projectsRef = useRef(null);
 
-      <div className="home-canvas__content">
+  useEffect(() => {
+    const section = projectsRef.current;
+    if (!section) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const hide = entry.isIntersecting && entry.intersectionRatio >= 0.4;
+        document.body.classList.toggle("hide-home-chrome", hide);
+      },
+      { threshold: [0.25, 0.4, 0.6, 0.8] },
+    );
+
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove("hide-home-chrome");
+    };
+  }, []);
+
+  return (
+    <main className="page home-page">
+      <section className="home-hero">
+        <div
+          className="home-hero__bg"
+          style={{ backgroundImage: `url(${asset("images/oMLPWhAXnb3SOMAeNCwqhvzYZ8M.png")})` }}
+          aria-hidden="true"
+        />
         <header className="home-brand fade-up">
           <h1 className="home-brand__name">Maroua BZ</h1>
           <p className="home-brand__tag">Computer Science & Product Design</p>
         </header>
+        <SocialDock />
+      </section>
 
-        <section className="home-selected" aria-label="Selected projects">
-          <h2 className="home-selected__title fade-up">Selected projects</h2>
+      <section
+        ref={projectsRef}
+        className="home-projects"
+        id="selected"
+        aria-label="Selected projects"
+        style={{ backgroundImage: `url(${asset("images/PVWlMPZtnOVol7HIQcj1CparVg.png")})` }}
+      >
+        <div className="home-projects__band home-projects__band--top" aria-hidden="true" />
+        <div className="home-projects__band home-projects__band--unicode" aria-hidden="true" />
 
-          <div className="home-selected__grid">
-            {featured.map((item, index) => (
-              <Link
-                key={item.project.id}
-                to={`/projects#${item.project.id}`}
-                className={`home-card home-card--${item.place} fade-up`}
-                style={{ animationDelay: `${0.08 * (index + 1)}s` }}
-              >
-                {item.place === "unicode" ? <span className="home-card__label">{item.label}</span> : null}
-                <img
-                  className="home-card__image"
-                  src={asset(item.project.homeImage)}
-                  alt=""
-                  decoding="async"
-                />
-                {item.place !== "unicode" ? <span className="home-card__label">{item.label}</span> : null}
-              </Link>
-            ))}
-          </div>
-        </section>
+        {featured.levelup ? (
+          <Link
+            to={`/projects#${featured.levelup.id}`}
+            className="home-project home-project--levelup fade-up"
+          >
+            <div className="home-project__card">
+              <img src={asset(featured.levelup.homeImage)} alt="" decoding="async" />
+            </div>
+            <span className="home-project__title">LEVELUP</span>
+          </Link>
+        ) : null}
 
+        {featured.speech ? (
+          <Link
+            to={`/projects#${featured.speech.id}`}
+            className="home-project home-project--speech fade-up"
+            style={{ animationDelay: "0.08s" }}
+          >
+            <div className="home-project__card">
+              <img src={asset(featured.speech.homeImage)} alt="" decoding="async" />
+            </div>
+            <span className="home-project__title">SPEECH-AI</span>
+          </Link>
+        ) : null}
+
+        {featured.unicode ? (
+          <Link
+            to={`/projects#${featured.unicode.id}`}
+            className="home-project home-project--unicode fade-up"
+            style={{ animationDelay: "0.16s" }}
+          >
+            <span className="home-project__title">UNICODE</span>
+            <div className="home-project__card">
+              <img src={asset(featured.unicode.homeImage)} alt="" decoding="async" />
+            </div>
+          </Link>
+        ) : null}
+      </section>
+
+      <section className="home-finale">
+        <div
+          className="home-finale__bg"
+          style={{ backgroundImage: `url(${asset("images/F0demdaqV8J76Vl8rLM7njXiG7A.png")})` }}
+          aria-hidden="true"
+        />
         <aside className="home-essay-rail" aria-label="Reflection">
           <Link className="home-essay-rail__more" to="/projects">
             Other projects
@@ -73,13 +126,10 @@ export default function Home() {
             ))}
           </div>
         </aside>
-
         <Link className="home-door-cta fade-up" to="/personal">
           Personal Website
         </Link>
-      </div>
-
-      <SocialDock />
+      </section>
     </main>
   );
 }
