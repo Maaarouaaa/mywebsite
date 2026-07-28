@@ -4,67 +4,82 @@ import { SocialDock } from "../components/SiteChrome";
 import { homeEssay, projects } from "../data/content";
 
 const featured = [
-  projects.find((p) => p.id === "levelup"),
-  projects.find((p) => p.id === "speech-ai"),
-  projects.find((p) => p.id === "unicode"),
-].filter(Boolean);
+  { project: projects.find((p) => p.id === "levelup"), label: "LEVELUP", place: "levelup" },
+  { project: projects.find((p) => p.id === "speech-ai"), label: "SPEECH-AI", place: "speech" },
+  { project: projects.find((p) => p.id === "unicode"), label: "UNICODE", place: "unicode" },
+].filter((item) => item.project);
 
 export default function Home() {
   return (
-    <main className="page">
-      <section className="home-hero">
-        <div className="home-hero__bg" aria-hidden="true" />
-        <div className="home-hero__content fade-up">
-          <h1 className="home-hero__name">Maroua BZ</h1>
-          <p className="home-hero__tag">Computer Science & Product Design</p>
-        </div>
-        <SocialDock />
-      </section>
+    <main className="home-canvas page">
+      <img
+        className="home-canvas__bg"
+        src={asset("images/oMLPWhAXnb3SOMAeNCwqhvzYZ8M.png")}
+        alt=""
+        decoding="async"
+      />
 
-      <section className="home-projects" id="selected">
-        <div className="home-projects__bg" aria-hidden="true" />
-        <div className="home-projects__inner">
-          <p className="home-projects__label">Selected projects</p>
-          <div className="project-grid">
-            {featured.map((project, index) => (
+      <div className="home-canvas__content">
+        <header className="home-brand fade-up">
+          <h1 className="home-brand__name">Maroua BZ</h1>
+          <p className="home-brand__tag">Computer Science & Product Design</p>
+        </header>
+
+        <section className="home-selected" aria-label="Selected projects">
+          <h2 className="home-selected__title fade-up">Selected projects</h2>
+
+          <div className="home-selected__grid">
+            {featured.map((item, index) => (
               <Link
-                key={project.id}
-                to={`/projects#${project.id}`}
-                className={`project-tile ${index === 2 ? "project-tile--wide" : ""} fade-up`}
-                style={{ animationDelay: `${0.1 * index}s` }}
+                key={item.project.id}
+                to={`/projects#${item.project.id}`}
+                className={`home-card home-card--${item.place} fade-up`}
+                style={{ animationDelay: `${0.08 * (index + 1)}s` }}
               >
-                <img src={asset(project.homeImage)} alt="" />
-                <span>{project.short}</span>
+                {item.place === "unicode" ? <span className="home-card__label">{item.label}</span> : null}
+                <img
+                  className="home-card__image"
+                  src={asset(item.project.homeImage)}
+                  alt=""
+                  decoding="async"
+                />
+                {item.place !== "unicode" ? <span className="home-card__label">{item.label}</span> : null}
               </Link>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="home-door">
-        <div className="home-door__scene" aria-hidden="true" />
-        <div className="home-door__overlay fade-up">
-          <div className="home-door__scripts" aria-hidden="true">
-            <span>字</span>
-            <span>β</span>
-            <span>д</span>
-            <span>م</span>
-          </div>
-          <h2 className="home-door__title">Personal Website</h2>
-        </div>
-      </section>
-
-      <section className="home-essay">
-        <div className="home-essay__visual" aria-hidden="true" />
-        <aside className="home-essay__copy">
-          <Link className="home-essay__link" to="/projects">
+        <aside className="home-essay-rail" aria-label="Reflection">
+          <Link className="home-essay-rail__more" to="/projects">
             Other projects
           </Link>
-          {homeEssay.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-          ))}
+          <img
+            className="home-essay-rail__barcode"
+            src={asset("images/WXfU5jo7QVeYRk6D1W2du4Vqvm8.png")}
+            alt=""
+            decoding="async"
+          />
+          <div className="home-essay-rail__copy">
+            {homeEssay.map((paragraph, index) => (
+              <p key={paragraph.slice(0, 48)}>
+                {index === 0 ? (
+                  <>
+                    {paragraph} <span className="home-essay-rail__and-more">and more</span>
+                  </>
+                ) : (
+                  paragraph
+                )}
+              </p>
+            ))}
+          </div>
         </aside>
-      </section>
+
+        <Link className="home-door-cta fade-up" to="/personal">
+          Personal Website
+        </Link>
+      </div>
+
+      <SocialDock />
     </main>
   );
 }
